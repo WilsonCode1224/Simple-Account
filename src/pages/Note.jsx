@@ -40,6 +40,14 @@ const Note = () => {
     message: "",
     severity: "success",
   });
+  // 在組件加載時，從 localStorage 中讀取資料
+
+  useEffect(() => {
+    const storedItem = JSON.parse(localStorage.getItem("item"));
+    if (storedItem) {
+      setItem(storedItem);
+    }
+  }, [setItem]);
 
   const handleCloseToast = (event, reason) => {
     if (reason === "clickaway") {
@@ -62,7 +70,10 @@ const Note = () => {
       category: selectedCategoryRef.current,
     };
 
-    setItem([...item, newItem]);
+    setItem((prevItem) => [...prevItem, newItem]);
+
+    // localStorage setting
+    localStorage.setItem("item", JSON.stringify([...item, newItem]));
 
     dateRef.current.value = "";
     amountRef.current.value = "";
@@ -90,7 +101,11 @@ const Note = () => {
   const descriptionRef = useRef(null);
 
   // Delete method
-  const handleDelete = () => {};
+  const handleDelete = (indexToDelete) => {
+    const updatedItems = item.filter((_, index) => index !== indexToDelete);
+    setItem(updatedItems);
+    localStorage.setItem("item", JSON.stringify(updatedItems));
+  };
 
   return (
     <>
@@ -104,7 +119,6 @@ const Note = () => {
             onClick={() => navigate("/apphome")}
           >
             <HomeIcon />
-            返回主頁面
           </Button>
         </div>
 
@@ -163,7 +177,11 @@ const Note = () => {
             <p>金額: {record.amount}</p>
             <p>描述: {record.description}</p>
             <p>消費分類: {record.category}</p>
-            <Button onClick={handleDelete} variant="outlined" color="error">
+            <Button
+              onClick={() => handleDelete(index)}
+              variant="outlined"
+              color="error"
+            >
               刪除該項目
             </Button>
             <hr />
