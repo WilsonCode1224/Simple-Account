@@ -11,12 +11,14 @@ import { useState, createContext, useEffect } from "react";
 import CustomizedAccordions from "./components/Customization";
 
 // pages
-import HomePage from "./pages/HomePage";
+
+// import HomePage from "./pages/HomePage";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Note from "./pages/Note";
 import History from "./pages/History";
 import PieChart from "./pages/PieChart";
+import HomePageDemo from "./pages/HomePageDemo";
 
 // Create Context:
 export const tryContext = createContext();
@@ -34,7 +36,7 @@ function App() {
       <Router>
         <tryContext.Provider value={{ item, setItem }}>
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<HomePageDemo />} />
             <Route path="/login" element={<Login />} />
             <Route path="/apphome" element={<Home />} />
             <Route path="/appnote" element={<Note />} />

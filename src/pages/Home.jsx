@@ -38,7 +38,9 @@ const Home = () => {
   return (
     <>
       <Container style={{ textAlign: "center" }}>
-        <h1>Simple Account</h1>
+        <Link to="/" style={{ textDecoration: "none" }}>
+          <h1>Simple Account</h1>
+        </Link>
         <p>{currentDate}</p>
         <p>
           顯示金額: <b className="cost-color">${totalAmount}</b>
