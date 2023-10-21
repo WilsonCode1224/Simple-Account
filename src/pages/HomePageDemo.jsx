@@ -9,7 +9,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 // Hooks
 import { useNavigate } from "react-router-dom";
-
+import "animate.css";
 // Style components
 const BodyColor = styled.div`
   background: linear-gradient(to bottom, #87ceeb, #1e90ff);
@@ -47,6 +47,11 @@ const HomeImage = styled.img`
 
 const StyledButton = styled(Button)`
   letter-spacing: 0.1rem;
+
+  @media (max-width: 390px) {
+    padding: 8px 16px; /* 修改按鈕的 padding */
+    font-size: 12px; /* 修改文字大小 */
+  }
 `;
 
 // H2 styles:
@@ -81,7 +86,10 @@ const HomePageDemo = () => {
             >
               使用試用版
             </StyledButton>
-            <HomeImage src="/images/fubon.png" />
+            <HomeImage
+              className="animate__animated animate__rotateIn"
+              src="/images/fubon.png"
+            />
             <StyledButton
               variant="contained"
               size="medium"
@@ -91,8 +99,12 @@ const HomePageDemo = () => {
             </StyledButton>
           </Header>
           <Content>
-            <StyledH2>Product interface</StyledH2>
-            <StyledH2>Product interface</StyledH2>
+            <StyledH2 className="animate__animated animate__backInLeft">
+              Product interface
+            </StyledH2>
+            <StyledH2 className="animate__animated animate__backInRight">
+              Product interface
+            </StyledH2>
             <StyledH2>Product interface</StyledH2>
             <StyledH2>Product interface</StyledH2>
           </Content>
