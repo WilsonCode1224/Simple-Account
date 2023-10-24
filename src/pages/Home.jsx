@@ -9,18 +9,28 @@ import SummarizeIcon from "@mui/icons-material/Summarize";
 import { useEffect, useState, useContext } from "react";
 // rrd
 import { Link } from "react-router-dom";
+import { ItemContext } from "../AppContext/ItemContext";
 // import Context
-import { tryContext } from "../App";
 
 // Home
 const Home = () => {
+  const { item, setItem } = useContext(ItemContext);
   const [currentDate, setCurrentDate] = useState("");
-  const { item } = useContext(tryContext);
+
+  // 在組件加載時，從 localStorage 中讀取資料
 
   useEffect(() => {
     // get Date:
     setCurrentDate(getCurrentData());
   }, []);
+
+  // 擷取 item . setItem
+  useEffect(() => {
+    const storedItem = JSON.parse(localStorage.getItem("item"));
+    if (storedItem) {
+      setItem(storedItem);
+    }
+  }, [setItem]);
 
   const getCurrentData = () => {
     const taipeiData = new Date().toLocaleString("en-US", {

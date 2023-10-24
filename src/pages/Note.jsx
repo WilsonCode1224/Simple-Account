@@ -10,7 +10,7 @@ import ToastSnackbar from "../components/ToastSnackbar";
 import ExpenseCategorySelect from "../components/ExpenseCategorySelect";
 import HomeIcon from "@mui/icons-material/Home";
 // import Components(Context):
-import { tryContext } from "../App";
+import { ItemContext } from "../AppContext/ItemContext";
 
 const containerStyles = css`
   display: flex;
@@ -32,7 +32,7 @@ const buttonStyles = css`
 
 // Note.jsx
 const Note = () => {
-  const { item, setItem } = useContext(tryContext);
+  const { item, setItem } = useContext(ItemContext);
   const navigate = useNavigate();
 
   const [toast, setToast] = useState({
@@ -70,10 +70,12 @@ const Note = () => {
       category: selectedCategoryRef.current,
     };
 
+    // 先更新 state
     setItem((prevItem) => [...prevItem, newItem]);
 
-    // localStorage setting
-    localStorage.setItem("item", JSON.stringify([...item, newItem]));
+    // 再更新 localStorage
+    const updatedItem = [...item, newItem];
+    localStorage.setItem("item", JSON.stringify(updatedItem));
 
     dateRef.current.value = "";
     amountRef.current.value = "";

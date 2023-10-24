@@ -1,6 +1,5 @@
 // Hooks
 import { useContext } from "react";
-import { tryContext } from "../App";
 
 // MUI
 import { Button, Typography } from "@mui/material";
@@ -11,10 +10,13 @@ import PieChartIcon from "@mui/icons-material/PieChart";
 import { useNavigate } from "react-router-dom";
 import CustomizedAccordions from "../components/Customization";
 
+// Context
+import { ItemContext } from "../AppContext/ItemContext";
+
 // Code
 const History = () => {
   const navigate = useNavigate();
-  const { item, setItem } = useContext(tryContext);
+  const { item, setItem } = useContext(ItemContext);
   console.log("History", item);
 
   return (

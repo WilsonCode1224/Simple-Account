@@ -9,7 +9,7 @@ import Typography from "@mui/material/Typography";
 // context
 
 import { useContext } from "react";
-import { tryContext } from "../App";
+import { ItemContext } from "../AppContext/ItemContext";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -48,7 +48,7 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 export default function CustomizedAccordions() {
-  const { item } = useContext(tryContext);
+  const { item } = useContext(ItemContext);
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {

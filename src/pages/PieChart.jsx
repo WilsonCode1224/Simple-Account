@@ -1,7 +1,7 @@
 // useContext
 import { useContext } from "react";
 //  context Data
-import { tryContext } from "../App";
+import { ItemContext } from "../AppContext/ItemContext";
 // Hooks
 import { useNavigate } from "react-router-dom";
 // MUI
@@ -14,7 +14,7 @@ const PieChart = () => {
   // Link to:
   const navigate = useNavigate();
   // get context:
-  const { item, setItem } = useContext(tryContext);
+  const { item, setItem } = useContext(ItemContext);
   console.log("chart pages:", item);
   // piechart:
 
@@ -92,19 +92,3 @@ const PieChart = () => {
 };
 
 export default PieChart;
-
-// labels: item.map((record) => record.category),
-// datasets: [
-//   {
-//     data: item.map((record) => record.amount),
-//     backgroundColor: [
-//       "rgba(75,192,192,1)",
-//       "#ecf0f1",
-//       "#50AF95",
-//       "#f3ba2f",
-//       "#2a71d0",
-//     ],
-//     borderColor: "black",
-//     borderWidth: 2,
-//   },
-// ],
